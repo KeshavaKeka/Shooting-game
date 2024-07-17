@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    private Enemy script;
+    public int maxhealth = 100;
+    public int currentHealth;
+    public HealthBar healthbar;
+    public GameManager gamemanager;
     // Start is called before the first frame update
     void Start()
     {
-        script = GameObject.Find("SpawnManager").GetComponent<Enemy>();
+        currentHealth = maxhealth;
+        healthbar.setMaxHealth(maxhealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentHealth < 0)
+        {
+            Debug.Log("GameOver");
+            //gamemanager.GameOver();
+        }
+    }
+
+    public void takeDamage()
+    {
+        currentHealth -= 10;
+        healthbar.setHealth(currentHealth);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            script.takeDamage();
+            takeDamage();
             Destroy(other.gameObject);
         }
     }
