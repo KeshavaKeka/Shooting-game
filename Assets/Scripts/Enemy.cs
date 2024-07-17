@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //public int maxhealth = 100;
-    //public int currentHealth;
+    public int maxhealth = 100;
+    public int currentHealth;
     public GameObject enemy;
     private float xPos = 13;
     private float zpos = 13;
@@ -18,15 +18,15 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnRandomAnimal", startTime, intervalTime);
-        //currentHealth = maxhealth;
-        //healthbar.setMaxHealth(maxhealth);
+        currentHealth = maxhealth;
+        healthbar.setMaxHealth(maxhealth);
     }
 
-    //public void takeDamage()
-    //{
-    //    currentHealth -= 10;
-    //    healthbar.setMaxHealth(currentHealth);
-    //}
+    public void takeDamage()
+    {
+        currentHealth -= 10;
+        healthbar.setHealth(currentHealth);
+    }
 
     // Update is called once per frame
     void Update()

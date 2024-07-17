@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 350063939}
   - component: {fileID: 350063938}
   - component: {fileID: 350063937}
-  - component: {fileID: 350063941}
+  - component: {fileID: 350063942}
   m_Layer: 0
   m_Name: Portugese
   m_TagString: Untagged
@@ -460,7 +460,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -531,7 +531,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &350063941
+--- !u!114 &350063942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 350063936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35763b27888143a0b212f2246273e41, type: 3}
+  m_Script: {fileID: 11500000, guid: 36362c728bb744c4390807b4110b22e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &410087039
@@ -753,11 +753,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529789838}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c35b3524177da4d339e7ab9a6d908472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealth: 100
+  currentHealth: 0
   enemy: {fileID: 7654075408570018604, guid: 05025ac7a163e49eab674ed79a34a74d, type: 3}
   healthbar: {fileID: 299199594}
 --- !u!4 &529789840

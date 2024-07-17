@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    //public Enemy script;
     public float speed = 5.0f;
     private GameObject por;
     private float range = 5.0f;
@@ -27,13 +26,4 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
         transform.position += dir * speed * Time.deltaTime;
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.gameObject.name == "Portugese")
-    //    {
-    //        //script.takeDamage();
-    //        Destroy(gameObject);
-    //    }
-    //}
 }
