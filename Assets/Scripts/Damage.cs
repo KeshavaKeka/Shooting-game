@@ -20,8 +20,7 @@ public class Damage : MonoBehaviour
     {
         if(currentHealth < 0)
         {
-            Debug.Log("GameOver");
-            //gamemanager.GameOver();
+            gamemanager.GameOver();
         }
     }
 
