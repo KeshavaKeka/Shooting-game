@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed;
     private GameObject por;
     private float range = 5.0f;
     private float rand;
@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //script = GameObject.Find("SpawnManager").GetComponent<Enemy>();
+        speed = Random.Range(7, 10);
         por = GameObject.Find("Portugese");
         rand = Random.Range(-range, range);
         porPos = new Vector3(por.transform.position.x + rand, por.transform.position.y, por.transform.position.z);

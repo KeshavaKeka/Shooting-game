@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rigidBody;
     public FixedJoystick joystick;
     public float speed;
+    public GameManager gameManager;
 
     public GameObject arrow;
 
@@ -23,15 +24,18 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void FixedUpdate()
     {
-        rigidBody.velocity = new Vector3(joystick.Horizontal * speed, rigidBody.velocity.y, joystick.Vertical * speed);
-
-        float clampedX = Mathf.Clamp(rigidBody.position.x, minX, maxX);
-        float clampedZ = Mathf.Clamp(rigidBody.position.z, minZ, maxZ);
-        rigidBody.position = new Vector3(clampedX, rigidBody.position.y, clampedZ);
-
-        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+        if(gameManager.isGameActive)
         {
-            transform.rotation = Quaternion.LookRotation(rigidBody.velocity);
+            rigidBody.velocity = new Vector3(joystick.Horizontal * speed, rigidBody.velocity.y, joystick.Vertical * speed);
+
+            float clampedX = Mathf.Clamp(rigidBody.position.x, minX, maxX);
+            float clampedZ = Mathf.Clamp(rigidBody.position.z, minZ, maxZ);
+            rigidBody.position = new Vector3(clampedX, rigidBody.position.y, clampedZ);
+
+            if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+            {
+                transform.rotation = Quaternion.LookRotation(rigidBody.velocity * Time.deltaTime);
+            }
         }
     }
 

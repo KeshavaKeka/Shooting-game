@@ -18,7 +18,7 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth < 0)
+        if(currentHealth <= 0)
         {
             gamemanager.GameOver();
         }
@@ -26,7 +26,7 @@ public class Damage : MonoBehaviour
 
     public void takeDamage()
     {
-        currentHealth -= 10;
+        currentHealth -= 25;
         healthbar.setHealth(currentHealth);
     }
 
