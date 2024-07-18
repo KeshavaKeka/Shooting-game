@@ -1,29 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
-    public float speed;
-    private GameObject por;
+    public float attackRange = 3f;
+    public float attackDamage = 10f;
+    public float attackCooldown = 1f;
+
+    private Transform wallTarget;
+    private float attackTimer;
     private float range = 5.0f;
     private float rand;
     private Vector3 porPos;
-    private Vector3 dir;
-    // Start is called before the first frame update
+
+    private float speed = 5;
+
+    private Damage damage;
+
     void Start()
     {
-        speed = Random.Range(7, 10);
-        por = GameObject.Find("Portugese");
+        damage = GameObject.Find("Portugese").GetComponent<Damage>();
+        wallTarget = GameObject.Find("Portugese").transform;
         rand = Random.Range(-range, range);
-        porPos = new Vector3(por.transform.position.x + rand, por.transform.position.y, por.transform.position.z);
-        dir = (porPos - transform.position).normalized;
+        porPos = new Vector3(wallTarget.transform.position.x + rand, wallTarget.transform.position.y, wallTarget.transform.position.z + 1);
+        attackTimer = 0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
-        transform.position += dir * speed * Time.deltaTime;
+        if (wallTarget != null)
+        {
+            float distanceToWall = Vector3.Distance(transform.position, porPos);
+
+            if (distanceToWall <= attackRange)
+            {
+                if (attackTimer <= 0f)
+                {
+                    AttackWall();
+                    attackTimer = attackCooldown;
+                }
+                else
+                {
+                    attackTimer -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                MoveTowardsWall();
+            }
+        }
+    }
+
+    void MoveTowardsWall()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, porPos, speed * Time.deltaTime);
+        // Add your movement code here (e.g., using a NavMeshAgent if you want more advanced movement)
+    }
+
+    void AttackWall()
+    {
+        damage.takeDamage();
     }
 }

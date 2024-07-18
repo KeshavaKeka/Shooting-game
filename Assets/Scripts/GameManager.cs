@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
         isGameActive = false;
         shoot.gameObject.SetActive(false);
         joystick.gameObject.SetActive(false);

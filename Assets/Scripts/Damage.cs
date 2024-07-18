@@ -8,6 +8,8 @@ public class Damage : MonoBehaviour
     public int currentHealth;
     public HealthBar healthbar;
     public GameManager gamemanager;
+    private bool isTakingDamage = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             gamemanager.GameOver();
         }
@@ -26,16 +28,8 @@ public class Damage : MonoBehaviour
 
     public void takeDamage()
     {
-        currentHealth -= 25;
+        Debug.Log("Taking Damage");
+        currentHealth -= 1;
         healthbar.setHealth(currentHealth);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            takeDamage();
-            Destroy(other.gameObject);
-        }
     }
 }
