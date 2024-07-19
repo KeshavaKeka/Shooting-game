@@ -6,16 +6,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject[] enemies;
     private float xPos = 13;
     private float zPos = 13;
     private float startTime = 2.5f;
     private float intervalTime;
     private int number = 0;
-    public int maxEnemies = 20;
+    public int maxEnemies = 25;
     public PlayerController script;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI levelCompletedText;
+    public TextMeshProUGUI names;
     public Damage damage;
     public Damage damage2;
     public Button shoot;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (enemy == null || script == null || gameOverText == null || damage == null || damage2 == null)
+        if (script == null || gameOverText == null || damage == null || damage2 == null)
         {
             Debug.LogError("One or more GameObjects are not assigned in the Inspector!");
             return;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         shoot.gameObject.SetActive(false);
         joystick.gameObject.SetActive(false);
         pause.gameObject.SetActive(false);
+        names.gameObject.SetActive(false);
         if (damage.currentHealth <= 0 || damage2.currentPlayerHealth <= 0)
         {
             gameOverText.gameObject.SetActive(true);
@@ -85,10 +87,11 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
+        int index = Random.Range(0, 3) % 2;
         if (number < maxEnemies && isGameActive)
         {
-            Vector3 sPos = new Vector3(Random.Range(-xPos, xPos), enemy.transform.position.y, Random.Range(0, zPos));
-            Instantiate(enemy, sPos, enemy.transform.rotation);
+            Vector3 sPos = new Vector3(Random.Range(-xPos, xPos), enemies[index].transform.position.y, Random.Range(0, zPos));
+            Instantiate(enemies[index], sPos, enemies[index].transform.rotation);
             number++;
             float nextInvoke = Random.Range(1, 3);
             Invoke("SpawnEnemy", nextInvoke);

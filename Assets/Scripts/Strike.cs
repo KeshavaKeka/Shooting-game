@@ -6,7 +6,7 @@ public class Strike : MonoBehaviour
 {
     private bool allowStrike = false;
     private Transform player;
-    public Queue<Collider> otherObj = new Queue<Collider>();
+    public List<Collider> otherObj = new List<Collider>();
     private void Start()
     {
         player = GameObject.Find("Player").transform;
@@ -16,14 +16,14 @@ public class Strike : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
-            otherObj.Enqueue(other);
+            otherObj.Add(other);
             allowStrike = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-
+        otherObj.Remove(other);
         if (other.gameObject.CompareTag("Enemy"))
         {
             allowStrike = false;
@@ -32,10 +32,11 @@ public class Strike : MonoBehaviour
 
     public void StrikeEnemy()
     {
-        if(allowStrike)
+        if(allowStrike && otherObj.Count!=0)
         {
             Debug.Log("Striking Enemy");
-            Collider des = otherObj.Dequeue();
+            Collider des = otherObj[0];
+            otherObj.RemoveAt(0);
             player.LookAt(des.gameObject.transform);
             Destroy(des.gameObject);
         }
