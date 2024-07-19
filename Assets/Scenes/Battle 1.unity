@@ -234,7 +234,7 @@ MonoBehaviour:
   script: {fileID: 859202127}
   gameOverText: {fileID: 1404162099}
   levelCompletedText: {fileID: 1199494103}
-  names: {fileID: 0}
+  names: {fileID: 601379271}
   damage: {fileID: 350063942}
   damage2: {fileID: 859202128}
   shoot: {fileID: 629116020}

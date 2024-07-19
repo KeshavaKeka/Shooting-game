@@ -12,6 +12,14 @@ public class Strike : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
+    private void Update()
+    {
+        if (otherObj.Count == 0)
+        {
+            allowStrike = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Enemy"))
@@ -24,10 +32,6 @@ public class Strike : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         otherObj.Remove(other);
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            allowStrike = false;
-        }
     }
 
     public void StrikeEnemy()
