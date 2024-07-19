@@ -38,7 +38,7 @@ public class Damage : MonoBehaviour
 
     public void takeDamagePlayer()
     {
-        currentPlayerHealth -= 5;
+        currentPlayerHealth -= 0;
         playerbar.setHealth(currentPlayerHealth);
     }
 }
