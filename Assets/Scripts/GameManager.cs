@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI levelCompletedText;
     public Damage damage;
+    public Damage damage2;
     public Button shoot;
     public FixedJoystick joystick;
     public Button resume;
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (enemy == null || script == null || gameOverText == null || damage == null)
+        if (enemy == null || script == null || gameOverText == null || damage == null || damage2 == null)
         {
             Debug.LogError("One or more GameObjects are not assigned in the Inspector!");
             return;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
         shoot.gameObject.SetActive(false);
         joystick.gameObject.SetActive(false);
         pause.gameObject.SetActive(false);
-        if (damage.currentHealth <= 0)
+        if (damage.currentHealth <= 0 || damage2.currentPlayerHealth <= 0)
         {
             gameOverText.gameObject.SetActive(true);
         }

@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public float attackRange = 3f;
-    public float attackDamage = 10f;
     public float attackCooldown = 1f;
 
     private Transform wallTarget;

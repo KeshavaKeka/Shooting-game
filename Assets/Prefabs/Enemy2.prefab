@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8195b4cd8ffe748289454a68839ac748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 2
+  attackCooldown: 1
+  speed: 5
 --- !u!54 &5877178338574398991
 Rigidbody:
   m_ObjectHideFlags: 0
