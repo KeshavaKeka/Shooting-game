@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Damage damage;
     public Damage damage2;
     public Button shoot;
+    public Button strike;
     public FixedJoystick joystick;
     public Button resume;
     public Button pause;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
             joystick.gameObject.SetActive(false);
             pause.gameObject.SetActive(false);
             names.gameObject.SetActive(false);
+            strike.gameObject.SetActive(false);
             gameOverText.gameObject.SetActive(true);
         }
         else if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
             joystick.gameObject.SetActive(false);
             pause.gameObject.SetActive(false);
             names.gameObject.SetActive(false);
+            strike.gameObject.SetActive(false);
             levelCompletedText.gameObject.SetActive(true);
         }
     }

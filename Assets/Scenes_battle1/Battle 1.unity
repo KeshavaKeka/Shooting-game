@@ -238,6 +238,7 @@ MonoBehaviour:
   damage: {fileID: 350063942}
   damage2: {fileID: 859202128}
   shoot: {fileID: 629116020}
+  strike: {fileID: 1025501464}
   joystick: {fileID: 299027133}
   resume: {fileID: 2096369668}
   pause: {fileID: 1498496389}
