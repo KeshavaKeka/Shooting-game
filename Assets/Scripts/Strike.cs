@@ -37,7 +37,9 @@ public class Strike : MonoBehaviour
             Debug.Log("Striking Enemy");
             Collider des = otherObj[0];
             otherObj.RemoveAt(0);
-            player.LookAt(des.gameObject.transform);
+            Vector3 direction = des.transform.position - player.position;
+            direction.y = 0;
+            player.rotation = Quaternion.LookRotation(direction);
             Destroy(des.gameObject);
         }
     }
