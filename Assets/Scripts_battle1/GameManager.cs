@@ -57,22 +57,27 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }
-        isGameActive = false;
-        shoot.gameObject.SetActive(false);
-        joystick.gameObject.SetActive(false);
-        pause.gameObject.SetActive(false);
-        names.gameObject.SetActive(false);
         if (damage.currentHealth <= 0 || damage2.currentPlayerHealth <= 0)
         {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+            isGameActive = false;
+            shoot.gameObject.SetActive(false);
+            joystick.gameObject.SetActive(false);
+            pause.gameObject.SetActive(false);
+            names.gameObject.SetActive(false);
             gameOverText.gameObject.SetActive(true);
         }
-        else
+        else if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
+            isGameActive = false;
+            shoot.gameObject.SetActive(false);
+            joystick.gameObject.SetActive(false);
+            pause.gameObject.SetActive(false);
+            names.gameObject.SetActive(false);
             levelCompletedText.gameObject.SetActive(true);
         }
     }
