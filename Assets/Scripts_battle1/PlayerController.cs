@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private float minX = -13;
     private float maxX = 13;
-    private float minZ = -13;
+    private float minZ = -11;
     private float maxZ = 13;
 
     private void Update()

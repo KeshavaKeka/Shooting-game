@@ -1,28 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class EnemyMovement2 : MonoBehaviour
-//{
-    //private float speed;
-    //private GameObject player;
-    //private Vector3 porPos;
-    //private Vector3 dir;
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    speed = Random.Range(5, 8);
-    //    player = GameObject.Find("Player");
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    dir = (player.transform.position - transform.position).normalized;
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
-    //    transform.position += dir * speed * Time.deltaTime;
-    //}
-
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -37,10 +12,19 @@ public class EnemyMovement2 : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private float attackTimer;
 
+    private float minX = -13;
+    private float maxX = 13;
+    private float minZ = -12;
+    private float maxZ = 13;
+    private float ypos;
+
     private Damage damage;
 
+    private Rigidbody rigidBody;
     void Start()
     {
+        ypos = gameObject.transform.position.y;
+        rigidBody = gameObject.GetComponent<Rigidbody>();
         damage = GameObject.Find("Player").GetComponent<Damage>();
         playerTarget = GameObject.Find("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -49,6 +33,9 @@ public class EnemyMovement2 : MonoBehaviour
 
     void Update()
     {
+        float clampedX = Mathf.Clamp(rigidBody.position.x, minX, maxX);
+        float clampedZ = Mathf.Clamp(rigidBody.position.z, minZ, maxZ);
+        rigidBody.position = new Vector3(clampedX, ypos, clampedZ);
         if (playerTarget != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
