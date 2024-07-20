@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static System.Net.WebRequestMethods;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,7 +40,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && number >= maxEnemies)
+        {
+            GameOver();
+        }
     }
 
     public void Pause()
